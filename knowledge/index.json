@@ -2276,12 +2276,12 @@
    "Python 3.14 (sqlite3, zlib, Pillow)"
   ],
   "anti_cheat": "none: the online service ended on 2026-09-01 and the Offline Edition has no servers; only in-exe '[cheat]' clamps on part durability/ammo at load (single-player, offline only)",
-  "status": "in-progress",
+  "status": "working",
   "agents": [
    "Claude Code (Opus 5.5)"
   ],
   "humans": [],
-  "date": "2026-10-10",
+  "date": "2026-10-11",
   "links": [
    "https://github.com/TsudaKageyu/minhook",
    "https://github.com/ocornut/imgui",
