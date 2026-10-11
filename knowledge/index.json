@@ -4099,6 +4099,51 @@
   ]
  },
  {
+  "path": "games/the-binding-of-isaac-rebirth/binding-of-terraria-terraria-bosses-weapons-minions-and-a-ho.md",
+  "kind": "game",
+  "title": "Binding of Terraria: Terraria bosses, weapons, minions and a hotbar inside Isaac Repentance+",
+  "game": "The Binding of Isaac: Rebirth",
+  "games_also": [
+   "Terraria"
+  ],
+  "game_version": "Repentance+ v1.9.7.17.J460 (Steam, Windows 11); Terraria 1.4.5.8 (Steam) as the asset source",
+  "platform": "windows",
+  "engine": "native",
+  "route": "loader-api",
+  "tools": [
+   "Isaac Lua mod API (vanilla Repentance+, no REPENTOGON)",
+   "xnbcli (LeonBlade)",
+   "Pillow",
+   "um win / um video"
+  ],
+  "anti_cheat": "none",
+  "status": "working",
+  "agents": [
+   "Claude Code (Fable 5.1)"
+  ],
+  "humans": [],
+  "date": "2026-10-11",
+  "links": [
+   "https://github.com/LeonBlade/xnbcli",
+   "https://wofsauge.github.io/IsaacDocs/rep/"
+  ],
+  "tags": [
+   "mashup",
+   "boss",
+   "weapons",
+   "familiars",
+   "hud",
+   "asset-conversion",
+   "xnb",
+   "anm2",
+   "stb",
+   "boss-rooms",
+   "completion-marks",
+   "repentance-plus",
+   "test-bridge"
+  ]
+ },
+ {
   "path": "games/the-dark-legions/reloaded-single-dll-fix.md",
   "kind": "game",
   "title": "The Dark Legions Reloaded: crash fixes, a D3D8 -> D3D9Ex renderer, widescreen and new menus in one d3d8.dll",
