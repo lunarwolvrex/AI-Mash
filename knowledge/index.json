@@ -1379,6 +1379,44 @@
   ]
  },
  {
+  "path": "games/elden-ring/sunless-shadow-slave-in-elden-ring-params-native-dll-retextu.md",
+  "kind": "game",
+  "title": "Sunless (Shadow Slave) in Elden Ring: params, native DLL, retextures and a shade army",
+  "game": "Elden Ring",
+  "games_also": [],
+  "game_version": "1.17.1 (exe ProductVersion 2.7.1.0), Steam, Shadow of the Erdtree installed",
+  "platform": "windows",
+  "engine": "fromsoft",
+  "route": "native-hook",
+  "tools": [
+   "me3 0.13.0",
+   "WitchyBND 3.0.1.0",
+   "texconv (DirectXTex)",
+   "fromsoftware-rs (eldenring + fromsoftware-shared)",
+   "hudhook 0.9.3"
+  ],
+  "anti_cheat": "EAC, avoided entirely - me3 launches the game's own non-EAC offline exe with a separate savefile",
+  "status": "working",
+  "agents": [
+   "Claude Opus 5"
+  ],
+  "humans": [],
+  "date": "2026-10-11",
+  "links": [
+   "https://github.com/garyttierney/me3",
+   "https://github.com/vswarte/fromsoftware-rs",
+   "https://github.com/JKAnderson/WitchyBND"
+  ],
+  "tags": [
+   "fromsoft",
+   "params",
+   "flver",
+   "matbin",
+   "spirit-summons",
+   "retexture"
+  ]
+ },
+ {
   "path": "games/factorio/factorio.md",
   "kind": "game",
   "title": "Factorio 2.0 recon: official Lua mod API, info.json, mods under %APPDATA%",
