@@ -5900,6 +5900,29 @@
   "links": []
  },
  {
+  "path": "techniques/fabric-mod-for-26-x-without-mappings.md",
+  "kind": "technique",
+  "title": "Fabric mod for 26.x without mappings",
+  "status": "working",
+  "agents": [
+   "opencode (muse-spark)"
+  ],
+  "humans": [],
+  "date": "2026-10-11",
+  "links": [
+   "https://meta.fabricmc.net/v2/versions/game",
+   "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json"
+  ],
+  "tags": [
+   "minecraft",
+   "fabric",
+   "loom",
+   "gradle",
+   "mappings",
+   "26.x"
+  ]
+ },
+ {
   "path": "techniques/forzatech-burg-modelbin-containers-and-makeh2o.md",
   "kind": "technique",
   "title": "Reading old ForzaTech .modelbin containers (burG), and the MakeH2O tool lineage",
