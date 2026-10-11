@@ -16,6 +16,7 @@ import re
 import struct
 import subprocess
 import time
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from um.common import die, is_mac, is_windows, is_wsl, ps_exe, to_posix
@@ -366,7 +367,12 @@ def _in_skip_dir(rel: str) -> bool:
 MOD_DIRS = ["mods", "mod", "addons", "plugins", "custom", "workshop", "usermods", "~mods", "content/paks/~mods", "data/scripts", "bepinex/plugins"]
 
 # known games: better routes than the engine default
+BANNERLORD_ROUTE = ("official module system: Modules/<id>/SubModule.xml + ModuleData XML/XSLT and C# MBSubModuleBase; "
+                   "optional Bannerlord.Harmony for managed patches; inspect the installed TaleWorlds DLLs")
+BANNERLORD_BIN_DIRS = ("win64_shipping_client", "gaming.desktop.x64_shipping_client", "win64_shipping_weditor")
 KNOWN = {
+    "mount & blade ii: bannerlord": (BANNERLORD_ROUTE, "bannerlord.md"),
+    "mount & blade ii bannerlord": (BANNERLORD_ROUTE, "bannerlord.md"),
     "terraria": ("tModLoader (free Steam app 1281930): C# ModItem/ModNPC/ModProjectile/ModSystem, hot reload from ModSources", "dotnet-xna.md"),
     "stardew valley": ("SMAPI + Content Patcher (JSON content packs) or C# SMAPI mods with Harmony", "dotnet-xna.md"),
     "celeste": ("Everest + Olympus; C# code mods with MonoMod hooks, maps with Lönn/Ahorn", "dotnet-xna.md"),
@@ -446,6 +452,7 @@ def online_only(name: str) -> str | None:
 
 ENGINES = {
     # key: (label, playbook, route)
+    "bannerlord": ("Bannerlord (TaleWorlds native engine + managed modules)", "bannerlord.md", BANNERLORD_ROUTE),
     "unity-mono": ("Unity (Mono)", "unity.md", "BepInEx 5 (or MelonLoader) plugin in C# with HarmonyX patches; read Managed/Assembly-CSharp.dll with ILSpy; assets via AssetRipper/UABEA"),
     "unity-il2cpp": ("Unity (IL2CPP)", "unity.md", "BepInEx 6 (IL2CPP) or MelonLoader; recover types with Cpp2IL / Il2CppDumper, patch through Il2CppInterop"),
     "unreal": ("Unreal Engine", "unreal.md", "UE4SS (Lua/C++ hooks, live property viewer) and/or pak mods in Content/Paks/~mods (FModel to browse, retoc/repak to pack)"),
@@ -493,6 +500,23 @@ def detect(ix: Index) -> tuple[list[tuple[str, int, list[str], dict]], dict]:
 
     def add(key, score, ev, **det):
         hits.append((key, score, ev, det))
+
+    # Bannerlord has its own module system; a managed launcher alone suggests the wrong generic .NET route.
+    bannerlord_dlls = ix.find(*(f"bin/{d}/taleworlds.mountandblade.dll" for d in BANNERLORD_BIN_DIRS))
+    if bannerlord_dlls and ix.has("modules/native/submodule.xml"):
+        dll = min(bannerlord_dlls, key=lambda f: BANNERLORD_BIN_DIRS.index(f.split("/")[1]))
+        version_file = dll.rsplit("/", 1)[0] + "/version.xml"
+        det = dict(product="Mount and Blade II Bannerlord")
+        if version_file in ix.files:
+            try:
+                singleplayer = ET.parse(ix.path(version_file)).getroot().find("Singleplayer")
+                if singleplayer is not None:
+                    det["version"] = (singleplayer.get("Value") or singleplayer.get("value") or "").strip()
+                    if det["version"]:
+                        det["version_file"] = version_file
+            except (OSError, ET.ParseError, LookupError, ValueError):
+                pass
+        add("bannerlord", 100, [dll, "modules/native/submodule.xml"], **det)
 
     # Unity
     data_dirs = [d for d in {"/".join(f.split("/")[:-1]) for f in ix.find("*_data/globalgamemanagers", "*_data/data.unity3d", "*_data/maindata")}]
@@ -743,6 +767,8 @@ def scan(query: str) -> dict:
     anti = [n for n, pats in ANTI_CHEAT if ix.has(*pats) or ix.has_dir(*[p.rstrip("/*") for p in pats if p.endswith("/*")])]
     loaders = [n for n, pats in LOADERS if ix.has(*pats) or ix.has_dir(*[p.rstrip("/*") for p in pats if p.endswith("/*")])]
     moddirs = [d for d in MOD_DIRS if d in ix.dirs]
+    if key == "bannerlord" and "modules" in ix.dirs:
+        moddirs.append("modules")
     name = (game.get("name") or root.name)
     lname = name.lower()
     known = next((v for k, v in sorted(KNOWN.items(), key=lambda kv: -len(kv[0])) if k == lname or (k in lname and len(k) > 5)), None) \
@@ -753,7 +779,7 @@ def scan(query: str) -> dict:
         routes.append(dict(route=known[0], playbook=known[1], why="known game"))
     if not known or known[1] != playbook or key == "native":
         routes.append(dict(route=route, playbook=playbook, why=f"engine: {label}"))
-    if key not in ("native",):
+    if key not in ("native", "bannerlord"):
         routes.append(dict(route=ENGINES["native"][2], playbook="native.md", why="fallback when no loader reaches what you need"))
     warnings = []
     if len(ix.files) < 5:
