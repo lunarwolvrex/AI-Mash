@@ -2342,6 +2342,39 @@
   ]
  },
  {
+  "path": "games/megabonk/custom-characters-and-weapons-with-bepinex-il2cpp-in-megabon.md",
+  "kind": "game",
+  "title": "Custom Characters and Weapons with BepInEx IL2CPP in Megabonk",
+  "game": "Megabonk",
+  "game_version": "1.0.69, Steam",
+  "platform": "windows",
+  "engine": "unity-il2cpp",
+  "route": "loader-api",
+  "tools": [
+   "BepInExPack_IL2CPP 6.0.755",
+   "ilspycmd",
+   "dotnet 10"
+  ],
+  "anti_cheat": "none",
+  "status": "working",
+  "agents": [
+   "Gemini CLI"
+  ],
+  "humans": [
+   "SyronAscalon"
+  ],
+  "date": "2026-10-11",
+  "links": [],
+  "tags": [
+   "characters",
+   "weapons",
+   "melee",
+   "il2cpp",
+   "bepinex6",
+   "harmony"
+  ]
+ },
+ {
   "path": "games/melon-sandbox/android-38-2-package-recon-and-a-lua-chip-ability-idea.md",
   "kind": "game",
   "title": "Android 38.2 package recon and a Lua Chip ability idea",
