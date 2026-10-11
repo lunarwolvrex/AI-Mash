@@ -74,6 +74,7 @@ and source supplied the route. Scan output is a hypothesis to check, not proof t
 ## Build and install steps
 
 1. Back up existing game data. For a first test, use a clean profile rather than an existing campaign.
+   The original engine-loaded files are also available in [the worked example](../../../examples/mindustry-homing).
 2. Use the [released source and tested ZIP](https://github.com/liubrain39/modlab-homing-lab/releases/tag/v0.1.0).
    The ZIP root must contain `mod.json`, with `content/`, `scripts/` and `sprites/` beside it.
 3. In the game choose **Mods → Open Folder**, quit, copy the ZIP into that folder, keep it zipped, and restart.

@@ -178,6 +178,11 @@ audio, both PowerShell with embedded C#.
   - Minecraft TNT, arrows and fireworks become GTA explosions and bullets, and Minecraft mobs fight the
     police.
 
+- **[examples/mindustry-homing](examples/mindustry-homing)**: a free Mindustry 160.7 JSON/JavaScript lab.
+  - Two copper-fed turrets compare straight and guided bullets in a 30-second, fixed-aim arena.
+  - Original source and sprites, clean-profile installation evidence and recovery steps; verified on
+    macOS. No paid assets, API key or external loader is needed to run it.
+
 Each has a field note with every non-obvious lesson: [knowledge/INDEX.md](knowledge/INDEX.md).
 
 ## Rules it follows
