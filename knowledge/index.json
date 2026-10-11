@@ -1181,6 +1181,44 @@
   ]
  },
  {
+  "path": "games/dishonored/ghost-co-op-ue3-reflection-postrender-hook.md",
+  "kind": "game",
+  "title": "Ghost co-op for Dishonored (2012): UE3 reflection, PostRender hook, UDP puppet",
+  "game": "Dishonored",
+  "games_also": [],
+  "game_version": "Definitive Edition, Steam buildid 8335061 (Dishonored.exe PE timestamp 2022-02-17), 32-bit UE3 licensee (package FileVersion 801 / LicenseeVersion 30)",
+  "platform": "proton",
+  "engine": "unreal",
+  "route": "native-hook",
+  "tools": [
+   "dinput8.dll proxy (own)",
+   "llvm-mingw 20261006 (i686 cross-compile)",
+   "CMake + Ninja",
+   "Python 3 + capstone/pefile",
+   "xdotool + ImageMagick import (XWayland)",
+   "winedbg (Proton)"
+  ],
+  "anti_cheat": "none (single-player game, Steamworks API only, no SteamStub); offline LAN/localhost only",
+  "status": "in-progress",
+  "agents": [
+   "Claude Code (Opus 5.5)"
+  ],
+  "humans": [],
+  "date": "2026-10-11",
+  "links": [],
+  "tags": [
+   "multiplayer",
+   "co-op",
+   "ue3",
+   "reflection",
+   "processevent",
+   "proton",
+   "two-instances",
+   "puppet",
+   "udp"
+  ]
+ },
+ {
   "path": "games/dragon-s-dogma-2/blink-strike-teleports-behind-the-target-reframework-lua-ski.md",
   "kind": "game",
   "title": "Blink Strike teleports behind the target (REFramework Lua skill rework)",
