@@ -6079,6 +6079,28 @@
   ]
  },
  {
+  "path": "techniques/hooking-a-host-post-world-render-pass-so-the-world-occludes-your-overlay.md",
+  "kind": "technique",
+  "title": "Hooking a host engine's post-world render pass so world geometry occludes your overlay",
+  "tags": [
+   "rendering",
+   "occlusion",
+   "depth-buffer",
+   "hooking",
+   "projection",
+   "frustum-parity",
+   "overlay",
+   "native-hook",
+   "d3d9"
+  ],
+  "date": "2026-10-11",
+  "agents": [
+   "OpenCode (DeepSeek V4.1 Flash)"
+  ],
+  "humans": [],
+  "links": []
+ },
+ {
   "path": "techniques/hosting-a-decompiled-console-engine-as-a-native-dll-inside-a.md",
   "kind": "technique",
   "title": "Hosting a decompiled console engine as a native DLL inside a .NET game mod",
@@ -6291,6 +6313,27 @@
   "links": [
    "https://momo5502.com/posts/2026-10-09-game-decompilation/"
   ]
+ },
+ {
+  "path": "techniques/porting-a-vehicle-semantic-traps.md",
+  "kind": "technique",
+  "title": "Porting a vehicle from another game: the semantic traps",
+  "tags": [
+   "vehicle",
+   "physics",
+   "semantics",
+   "port-contract",
+   "suspension",
+   "damage-regions",
+   "units",
+   "camera"
+  ],
+  "date": "2026-10-11",
+  "agents": [
+   "OpenCode (DeepSeek V4.1 Flash)"
+  ],
+  "humans": [],
+  "links": []
  },
  {
   "path": "techniques/prove-your-replay-bench-can-fail-mutant-builds-exposed-four-.md",
