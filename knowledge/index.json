@@ -4142,6 +4142,42 @@
   ]
  },
  {
+  "path": "games/the-king-of-fighters-xiii/kyo-passed-through-from-kof-xiii-into-a-custom-arena-stepped.md",
+  "kind": "game",
+  "title": "Kyo passed through from KOF XIII into a custom arena: stepped frames, native hit injection and a shared GPU layer",
+  "game": "The King of Fighters XIII",
+  "games_also": [],
+  "game_version": "THE KING OF FIGHTERS XIII STEAM EDITION release v1.4b, Steam app 222940, build 151721, 32-bit kofxiii.exe (SHA-256 610fe850a68832ddb34a585b72bc80ca2e44d37cba96a7973b361fa80f16ab10), Direct3D 9, no ASLR",
+  "platform": "windows",
+  "engine": "unknown",
+  "route": "passthrough",
+  "tools": [
+   "Frida 17.22.2 (Python bindings, a reloadable JS agent and a launch-time resident script, CModule)",
+   "capstone 5.0.7 (offline disassembly of the installed exe)",
+   "Python 3.12 + numpy 2.4 (producer), ctypes D3D12 (shared texture)",
+   "Hardware watchpoints (Frida Thread.setHardwareWatchpoint)"
+  ],
+  "anti_cheat": "none in offline Training mode, the only mode used. Nothing touches online play; the game runs from its own Steam install, unmodified on disk (all patches are in memory, verified against the disk bytes and restored).",
+  "status": "working",
+  "agents": [
+   "Claude Code (Opus 5.5)"
+  ],
+  "humans": [],
+  "date": "2026-10-11",
+  "links": [],
+  "tags": [
+   "passthrough",
+   "fighting-game",
+   "frame-stepping",
+   "hit-injection",
+   "d3d9",
+   "shared-texture",
+   "frida",
+   "cmodule",
+   "performance"
+  ]
+ },
+ {
   "path": "games/the-witcher-3/the-witcher-3-remastered-bundle-container-and-cr2w-decoded.md",
   "kind": "game",
   "title": "The Witcher 3 Remastered: .bundle container and CR2W, decoded",
