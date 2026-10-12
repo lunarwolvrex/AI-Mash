@@ -961,7 +961,7 @@
   "title": "Portal gun prototype via dinput8 proxy DLL: player, camera and angle offsets",
   "game": "DARK SOULS: REMASTERED",
   "games_also": [],
-  "game_version": "Steam build 10943698; DarkSoulsRemastered.exe 50,286,344 bytes, SizeOfImage 0x319B000",
+  "game_version": "App ver 1.03.1 (title screen), Steam build 10943698; DarkSoulsRemastered.exe 50,286,344 bytes, SizeOfImage 0x319B000",
   "platform": "windows",
   "engine": "fromsoft",
   "route": "native-hook",
