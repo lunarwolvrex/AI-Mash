@@ -95,6 +95,30 @@ def test_zengin_detected(tmp_path):
     assert key == "zengin"
 
 
+def test_mt_framework_detected(tmp_path):
+    # DMC4 layout: .arc archives under nativePC/
+    key, _ = engine_of(tmp_path, {"DevilMayCry4_DX9.exe": _pe(False),
+                                  "nativePC/rom/gameplay.arc": b"ARC\x00"})
+    assert key == "mt-framework"
+
+
+def test_hedgehog_detected(tmp_path):
+    # Unleashed/Generations layout: split .ar archives with .arl lists
+    key, _ = engine_of(tmp_path, {"UnleashedRecomp.exe": _pe(False, arch=0x8664),
+                                  "game/#ActD_Africa.ar.00": b"x",
+                                  "game/#ActD_Africa.arl": b"x"})
+    assert key == "hedgehog"
+
+
+def test_blackrock_detected(tmp_path):
+    # Split/Second layout: .shaderinst + .model assets, .ark level packs
+    key, _ = engine_of(tmp_path, {"SplitSecond.exe": _pe(False),
+                                  "data/docks.ark": b"x",
+                                  "data/ve/car.model": b"x",
+                                  "data/ve/car.shaderinst": b"x"})
+    assert key == "blackrock"
+
+
 def test_nested_exe_fingerprinted(tmp_path):
     # Gothic-style layout: the game exe lives one level down in system/
     make(tmp_path, {"system/Gothic2.exe": _pe(managed=False), "Data/worlds.vdf": b"x"})

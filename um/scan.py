@@ -462,8 +462,11 @@ ENGINES = {
     "genie": ("Genie (Age of Empires DE)", "genie-aoe2.md", "data mods (genieutils-py), graphics/UI mods, scenarios; SLD sprites"),
     "clausewitz": ("Paradox Clausewitz/Jomini", "misc-engines.md", "script mods (plain text) in Documents/Paradox Interactive/<game>/mod"),
     "re-engine": ("Capcom RE Engine", "big-frameworks.md", "REFramework (Lua scripts, in-game UI) + Fluffy Mod Manager for pak/natives replacements"),
+    "mt-framework": ("Capcom MT Framework", "big-frameworks.md", ".arc archives under nativePC/ (unpack/repack with ARCtool; replace .arc contents); native code via DLL hooks"),
     "fromsoft": ("FromSoftware (Dantelion)", "big-frameworks.md", "ModEngine2 + Smithbox/DSMapStudio, param edits; offline only"),
     "rage": ("Rockstar RAGE", "big-frameworks.md", "story mode: ScriptHookV + ASI loader, OpenIV/CodeWalker for assets; never online"),
+    "hedgehog": ("Sonic Hedgehog Engine", "big-frameworks.md", ".ar/.arl split archives (Hedgehog Mod Manager for Generations-era titles; Unleashed Recompiled loads loose files/mods from its folders)"),
+    "blackrock": ("Black Rock Engine", "big-frameworks.md", ".ark level packs with .model/.textures assets and plaintext .params config; asset replacement, native code via DLL hooks"),
     "redengine": ("CD Projekt REDengine", "big-frameworks.md", "REDmod, Cyber Engine Tweaks, RED4ext, WolvenKit (Cyberpunk); REDkit (Witcher 3)"),
     "idtech": ("id Tech / Doom family", "misc-engines.md", "WAD/PK3/PK4 mods, source ports"),
     "cryengine": ("CryEngine", "native.md", "pak (zip) overrides, Lua/XML where exposed; native hooks otherwise"),
@@ -649,9 +652,23 @@ def detect(ix: Index) -> tuple[list[tuple[str, int, list[str], dict]], dict]:
     if ix.has("re_chunk_000.pak", "re_chunk_000.pak.*"):
         add("re-engine", 100, ["re_chunk_000.pak"])
 
+    # Capcom MT Framework (Devil May Cry 4, Resident Evil 5, Lost Planet, Dead Rising 2):
+    # .arc archives under nativePC/
+    if ix.has("nativepc/*.arc", "nativepc/*/*.arc"):
+        add("mt-framework", 95, ix.find("nativepc/*.arc", "nativepc/*/*.arc")[:2])
+
     # FromSoftware
     if ix.has("eldenring.exe", "game/eldenring.exe", "darksoulsiii.exe", "game/darksoulsiii.exe", "sekiro.exe", "armoredcore6.exe", "game/armoredcore6.exe", "nightreign.exe", "game/nightreign.exe") or ix.has("*/regulation.bin", "regulation.bin"):
         add("fromsoft", 95, ix.find("*eldenring.exe", "*darksoulsiii.exe", "*sekiro.exe", "*armoredcore6.exe", "*nightreign.exe", "*regulation.bin")[:2])
+
+    # Sonic Hedgehog Engine (Unleashed, Generations, incl. Unleashed Recompiled):
+    # split .ar archives with .arl lists (packed .ar.00 + .arl)
+    if ix.has("*.arl") and (ix.has("*.ar") or ix.find("*.ar.??")):
+        add("hedgehog", 95, ix.find("*.arl")[:1] + ix.find("*.ar", "*.ar.??")[:1])
+
+    # Black Rock Engine (Split/Second, Pure): .shaderinst + .model assets, .ark level packs
+    if ix.has("*.shaderinst") and ix.has("*.model"):
+        add("blackrock", 95, ix.find("*.shaderinst")[:1] + ix.find("*.model")[:1])
 
     # RAGE
     if ix.has("gta5.exe", "gta5_enhanced.exe", "playgtav.exe", "rdr2.exe", "gtaiv.exe") or (ix.has("*.rpf") and ix.has("*.exe")):

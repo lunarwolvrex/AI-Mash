@@ -16,6 +16,13 @@ reinvent it. Check each one's GitHub/Nexus page for the version matching the gam
 - Online components (SF6 ranked, MH lobbies): cosmetic-only local mods are the norm. Never gameplay-affecting
   mods online.
 
+## Capcom MT Framework (Devil May Cry 4, Resident Evil 5, Lost Planet, Dead Rising 2)
+- **Archives:** game data lives in `.arc` files under `nativePC/`. Unpack/repack with ARCtool (or
+  uArcTool); most content mods are `.arc` replacements.
+- **Code:** no official SDK; native mods are DLL hooks. Read the exe with Ghidra/IDA, verify with Cheat
+  Engine, same as any native target (`native.md`).
+- DMC4 ships `dx9` and `dx10` exes (both x86); mod against the one you actually launch.
+
 ## FromSoftware (Elden Ring, Dark Souls, Sekiro, Armored Core 6, Nightreign)
 - **Loaders:** ModEngine2 (archived but widely used) or its successor **me3**. They load mods from a folder
   and launch the game **offline with EAC off**. That is the only acceptable way; never online.
@@ -46,6 +53,26 @@ reinvent it. Check each one's GitHub/Nexus page for the version matching the gam
     - explosion camera shake isn't reported by `IS_GAMEPLAY_CAM_SHAKING`.
   - **Camera timing:** a script reads the camera for the frame being prepared, one frame ahead of what's on
     screen.
+
+## Sonic Hedgehog Engine (Unleashed, Generations, Lost World, Forces)
+- **Archives:** split `.ar` files with `.arl` lists (e.g. `#ActD_Africa.ar.00` + `#ActD_Africa.arl`).
+  Generations-era titles are modded with Hedgehog Mod Manager (codes + file replacements).
+- **Unleashed Recompiled** (Xbox 360 recompiled for PC) keeps the same layout under `game/` plus `dlc/`,
+  `update/`, `patched/` and `save/` folders. It loads loose files/mods from its own folders, so prefer
+  file replacement over repacking archives. Snapshot `save/` with `um backup` before modded launches.
+- **Animation:** HKX packfiles across these generations, see
+  `knowledge/techniques/havok-hkx-chunked-packfile-family.md`.
+
+## Black Rock Engine (Split/Second, Pure)
+- **Lineage:** Black Rock Studio's in-house engine, built on the studio's `Blimey` core libraries and
+  the renderer lineage MotoGP '06 → Pure → Split/Second (gamma-correct deferred shading, heavy
+  post-processing and VFX). No public engine name; "Black Rock Engine" is this toolkit's label for it.
+- **Layout:** level content in `.ark` packs under `data/` (e.g. `docks.ark`,
+  `downtownpowerplays.ark`), assets as `.model` + `.textures` with `.shaderinst`/`.shaders`/`.fxc`
+  shaders, and plaintext `.params` config (e.g. `splitsecond.params`).
+- **Modding:** no official tools or major framework; the usual route is asset replacement inside the
+  packs plus `.params` tweaks, native code via DLL hooks (`native.md`). Small community, so expect to
+  reverse formats yourself and prove each one with a round trip.
 
 ## CD Projekt REDengine
 - **Cyberpunk 2077:**
